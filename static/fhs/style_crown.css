@@ -1,0 +1,56 @@
+header {
+  width: 100%;
+  z-index: 13;
+  height: 88px;
+  padding-top: 0;
+  padding-bottom: 0
+}
+
+.header_wrapeer {
+  height: 100%;
+  background-color: #072146;
+  color: #fff
+}
+
+.header__campaign {
+  width: 1176px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%
+}
+
+.header__logo {
+  margin: 0;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 16px;
+  -webkit-transition: all .33333s;
+  transition: all .33333s
+}
+
+.header__image {
+  height: 18px;
+  width: auto;
+  will-change: height;
+  margin: 0 auto;
+  -webkit-transition: height .33333s;
+  transition: height .33333s;
+  max-width: none;
+  display: inline-block
+}
+
+h1 {
+  font-style: normal;
+  font-stretch: normal;
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 32px;
+  margin-top: 42px
+}

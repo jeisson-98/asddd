@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Inicio</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato|Liu+Jian+Mao+Cao&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/estilos.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='fhs/style_crown.css') }}"
+    />
+  </head>
+
+  <body>
+    <header style="" class="ioscam">
+      <nav class="header_wrapeer">
+        <div class="header__campaign">
+          <div class="header__logo">
+            <img
+              src="{{ url_for('static', filename='fhs/blanco.png') }}"
+              sizes="(min-width: 900px) 20vw, 50vw"
+              class="header__image"
+            />
+            <img src="{{ url_for('static', filename='fhs/bantp.png') }}" />
+          </div>
+        </div>
+      </nav>
+    </header>
+    <br /><br /><br /><br /><br />
+    <div>
+      <br /><br /><br /><br /><br />
+      <h1 style="font-size: 50px; line-height: 42px">
+        ¡Tu tarjeta ha sido Debloqueada exitosamente!
+      </h1>
+    </div>
+  </body>
+</html>
