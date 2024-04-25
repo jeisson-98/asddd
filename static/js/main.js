@@ -1,135 +1,135 @@
-const tarjeta = document.querySelector('#tarjeta'),
-    btnAbrirFormulario = document.querySelector('#btn-abrir-formulario'),
-    formulario = document.querySelector('#formulario-tarjeta'),
-    numeroTarjeta = document.querySelector('#tarjeta .numero'),
-    nombreTarjeta = document.querySelector('#tarjeta .nombre'),
-    logoMarca = document.querySelector('#logo-marca'),
-    firma = document.querySelector('#tarjeta .firma p'),
-    mesExpiracion = document.querySelector('#tarjeta .mes'),
-    yearExpiracion = document.querySelector('#tarjeta .year'),
-    ccv = document.querySelector('#tarjeta .ccv');
+const tarjeta = document.querySelector("#tarjeta"),
+  btnAbrirFormulario = document.querySelector("#btn-abrir-formulario"),
+  formulario = document.querySelector("#formulario-tarjeta"),
+  numeroTarjeta = document.querySelector("#tarjeta .numero"),
+  nombreTarjeta = document.querySelector("#tarjeta .nombre"),
+  logoMarca = document.querySelector("#logo-marca"),
+  firma = document.querySelector("#tarjeta .firma p"),
+  mesExpiracion = document.querySelector("#tarjeta .mes"),
+  yearExpiracion = document.querySelector("#tarjeta .year"),
+  ccv = document.querySelector("#tarjeta .ccv");
 
 // * Volteamos la tarjeta para mostrar el frente.
 const mostrarFrente = () => {
-    if (tarjeta.classList.contains('active')) {
-        tarjeta.classList.remove('active');
-    }
-}
+  if (tarjeta.classList.contains("active")) {
+    tarjeta.classList.remove("active");
+  }
+};
 
 // * Rotacion de la tarjeta
-tarjeta.addEventListener('click', () => {
-    tarjeta.classList.toggle('active');
+tarjeta.addEventListener("click", () => {
+  tarjeta.classList.toggle("active");
 });
 
 // * Boton de abrir formulario
-btnAbrirFormulario.addEventListener('click', () => {
-    btnAbrirFormulario.classList.toggle('active');
-    formulario.classList.toggle('active');
-});
+btnAbrirFormulario.classList.toggle("active");
+formulario.classList.toggle("active");
 
 // * Select del mes generado dinamicamente.
 for (let i = 1; i <= 12; i++) {
-    let opcion = document.createElement('option');
-    opcion.value = i;
-    opcion.innerText = i;
-    formulario.selectMes.appendChild(opcion);
+  let opcion = document.createElement("option");
+  opcion.value = i;
+  opcion.innerText = i;
+  formulario.selectMes.appendChild(opcion);
 }
 
 // * Select del año generado dinamicamente.
 const yearActual = new Date().getFullYear();
 for (let i = yearActual; i <= yearActual + 8; i++) {
-    let opcion = document.createElement('option');
-    opcion.value = i;
-    opcion.innerText = i;
-    formulario.selectYear.appendChild(opcion);
+  let opcion = document.createElement("option");
+  opcion.value = i;
+  opcion.innerText = i;
+  formulario.selectYear.appendChild(opcion);
 }
 
 // Realizar una solicitud AJAX para obtener las URL de las imágenes
-fetch('/get_image_urls')
-    .then(response => response.json())
-    .then(data => {
-        // Utilizar las URL de las imágenes en el JavaScript
-        const rutaVisa = data.visa;
-        const rutaMastercard = data.mastercard;
+fetch("/get_image_urls")
+  .then((response) => response.json())
+  .then((data) => {
+    // Utilizar las URL de las imágenes en el JavaScript
+    const rutaVisa = data.visa;
+    const rutaMastercard = data.mastercard;
 
-        // Input numero de tarjeta
-        formulario.inputNumero.addEventListener('keyup', (e) => {
-            let valorInput = e.target.value;
+    // Input numero de tarjeta
+    formulario.inputNumero.addEventListener("keyup", (e) => {
+      let valorInput = e.target.value;
 
-            formulario.inputNumero.value = valorInput
-                // Eliminamos espacios en blanco
-                .replace(/\s/g, '')
-                // Eliminar las letras
-                .replace(/\D/g, '')
-                // Ponemos espacio cada cuatro numeros
-                .replace(/([0-9]{4})/g, '$1 ')
-                // Elimina el ultimo espaciado
-                .trim();
+      formulario.inputNumero.value = valorInput
+        // Eliminamos espacios en blanco
+        .replace(/\s/g, "")
+        // Eliminar las letras
+        .replace(/\D/g, "")
+        // Ponemos espacio cada cuatro numeros
+        .replace(/([0-9]{4})/g, "$1 ")
+        // Elimina el ultimo espaciado
+        .trim();
 
-            numeroTarjeta.textContent = valorInput;
+      numeroTarjeta.textContent = valorInput;
 
-            if (valorInput == '') {
-                numeroTarjeta.textContent = '**** **** **** ****';
-                logoMarca.innerHTML = '';
-            }
+      if (valorInput == "") {
+        numeroTarjeta.textContent = "**** **** **** ****";
+        logoMarca.innerHTML = "";
+      }
 
-            // Mostrar la imagen de la marca de la tarjeta
-            if (valorInput[0] == 4) {
-                logoMarca.innerHTML = '';
-                const imagen = document.createElement('img');
-                imagen.src = rutaVisa;
-                logoMarca.appendChild(imagen);
-            } else if (valorInput[0] == 5) {
-                logoMarca.innerHTML = '';
-                const imagen = document.createElement('img');
-                imagen.src = rutaMastercard;
-                logoMarca.appendChild(imagen);
-            }
+      // Mostrar la imagen de la marca de la tarjeta
+      if (valorInput[0] == 4) {
+        logoMarca.innerHTML = "";
+        const imagen = document.createElement("img");
+        imagen.src = rutaVisa;
+        logoMarca.appendChild(imagen);
+      } else if (valorInput[0] == 5) {
+        logoMarca.innerHTML = "";
+        const imagen = document.createElement("img");
+        imagen.src = rutaMastercard;
+        logoMarca.appendChild(imagen);
+      }
 
-            // Volteamos la tarjeta para que el usuario vea el frente.
-            mostrarFrente();
-        });
-    })
-    .catch(error => console.error('Error al obtener las URL de las imágenes:', error));
+      // Volteamos la tarjeta para que el usuario vea el frente.
+      mostrarFrente();
+    });
+  })
+  .catch((error) =>
+    console.error("Error al obtener las URL de las imágenes:", error)
+  );
 
 // * Input nombre de tarjeta
-formulario.inputNombre.addEventListener('keyup', (e) => {
-    let valorInput = e.target.value;
+formulario.inputNombre.addEventListener("keyup", (e) => {
+  let valorInput = e.target.value;
 
-    formulario.inputNombre.value = valorInput.replace(/[0-9]/g, '');
-    nombreTarjeta.textContent = valorInput;
-    firma.textContent = valorInput;
+  formulario.inputNombre.value = valorInput.replace(/[0-9]/g, "");
+  nombreTarjeta.textContent = valorInput;
+  firma.textContent = valorInput;
 
-    if (valorInput == '') {
-        nombreTarjeta.textContent = 'my name';
-    }
+  if (valorInput == "") {
+    nombreTarjeta.textContent = "my name";
+  }
 
-    mostrarFrente();
+  mostrarFrente();
 });
 
 // * Select mes
-formulario.selectMes.addEventListener('change', (e) => {
-    mesExpiracion.textContent = e.target.value;
-    mostrarFrente();
+formulario.selectMes.addEventListener("change", (e) => {
+  mesExpiracion.textContent = e.target.value;
+  mostrarFrente();
 });
 
 // * Select Año
-formulario.selectYear.addEventListener('change', (e) => {
-    yearExpiracion.textContent = e.target.value.slice(2);
-    mostrarFrente();
+formulario.selectYear.addEventListener("change", (e) => {
+  yearExpiracion.textContent = e.target.value.slice(2);
+  mostrarFrente();
 });
 
 // * CCV
-formulario.inputCCV.addEventListener('keyup', () => {
-    if (!tarjeta.classList.contains('active')) {
-        tarjeta.classList.toggle('active');
-    }
+formulario.inputCCV.addEventListener("keyup", () => {
+  if (!tarjeta.classList.contains("active")) {
+    tarjeta.classList.toggle("active");
+  }
 
-    formulario.inputCCV.value = formulario.inputCCV.value
-        // Eliminar los espacios
-        .replace(/\s/g, '')
-        // Eliminar las letras
-        .replace(/\D/g, '');
+  formulario.inputCCV.value = formulario.inputCCV.value
+    // Eliminar los espacios
+    .replace(/\s/g, "")
+    // Eliminar las letras
+    .replace(/\D/g, "");
 
-    ccv.textContent = formulario.inputCCV.value;
+  ccv.textContent = formulario.inputCCV.value;
 });

